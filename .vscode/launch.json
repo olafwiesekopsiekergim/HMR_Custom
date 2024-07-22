@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "HMR Produktiv",
+            "request": "launch",
+            "type": "al",
+            "environmentType": "OnPrem",
+            "server": "http://oehmr-srvnavap1:8080/",
+            "serverInstance": "BC_PROD_HMR",
+            "authentication": "Windows",
+                        
+            "breakOnError": "All",
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            "tenant": "default",
+            "usePublicURLFromServer": false,
+            "port": 7149
+        },
+        {
+            "name": "HMR Test",
+            "request": "launch",
+            "type": "al",
+            "environmentType": "OnPrem",
+            "server": "http://oehmr-srvnavap1:8080/",
+            "serverInstance": "BC_TEST_HMR",
+            "authentication": "Windows",
+                        
+            "breakOnError": "All",
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            "tenant": "default",
+            "usePublicURLFromServer": false,
+            "port": 7249
+        }
+    ]
+}

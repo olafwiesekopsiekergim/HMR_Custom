@@ -15,10 +15,11 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
         }
     }
 
-    trigger OnAfterGetRecord()
+    trigger OnAfterGetCurrRecord()
     var
         gimProdOrderMgmt: codeunit gimProdOrderManagement;
     begin
         gimProdOrderMgmt.SetLightOnProdOrder(rec);
+        Currpage.uPDATE(false);
     end;
 }

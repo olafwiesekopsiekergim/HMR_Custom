@@ -1,8 +1,8 @@
-pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Order"
+pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
 {
     layout
     {
-        addlast(content)
+        addfirst(Control1)
         {
             field("gimAvailability Indicator"; Rec."gimAvailability Indicator")
             {

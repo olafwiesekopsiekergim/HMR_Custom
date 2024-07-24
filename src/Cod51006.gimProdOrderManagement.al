@@ -54,6 +54,7 @@ codeunit 51006 gimProdOrderManagement
 
         ProdOrder."gimAvailability Indicator".CreateOutStream(outStr);
         CopyStream(outstr, instr);
+        ProdOrder.modify;
 
     end;
 

@@ -2,11 +2,13 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Order"
 {
     layout
     {
-        addfirst(content)
+        addlast(content)
         {
             field("gimAvailability Indicator"; Rec."gimAvailability Indicator")
             {
                 applicationArea = all;
+                Caption = 'Availability Indicator';
+                visible = true;
 
 
             }

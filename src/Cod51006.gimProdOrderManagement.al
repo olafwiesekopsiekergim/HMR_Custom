@@ -44,19 +44,30 @@ codeunit 51006 gimProdOrderManagement
         availstate := getAvailibityStatus(ProdOrder);
         case availState of
             availState::"Not Available":
-                gimLightManagement.getRedLight(inStr);
+                ProdOrder."gimAvailability Indicator" := BitmapRed.bitmap;
             availState::"In Order":
-                gimLightManagement.getOrangeLight(inStr);
+                ProdOrder."gimAvailability Indicator" := BitmapOrange.bitmap;
             availState::Available:
-                gimLightManagement.getgreenLight(inStr);
+                ProdOrder."gimAvailability Indicator" := BitmapGreen.bitmap;
 
         end;
 
-        ProdOrder."gimAvailability Indicator".CreateOutStream(outStr);
-        CopyStream(outstr, instr);
-        ProdOrder.modify;
 
     end;
 
+    procedure InitBitmaps()
+    begin
+        BitmapRed.get(0);
+        BitmapOrange.get(1);
+        BitmapGreen.Get(3);
+        BitmapRed.CalcFields(Bitmap);
+        BitmapOrange.CalcFields(Bitmap);
+        BitmapGreen.CalcFields(Bitmap);
+    end;
+
+    var
+        BitmapRed: record gimBitmap;
+        BitmapOrange: record gimBitmap;
+        BitmapGreen: record gimBitmap;
 
 }

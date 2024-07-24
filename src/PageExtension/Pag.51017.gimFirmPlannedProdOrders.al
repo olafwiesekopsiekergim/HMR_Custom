@@ -8,11 +8,12 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Order"
             {
                 applicationArea = all;
 
+
             }
         }
     }
 
-    trigger OnAfterGetCurrRecord()
+    trigger OnAfterGetRecord()
     var
         gimProdOrderMgmt: codeunit gimProdOrderManagement;
     begin

@@ -1,3 +1,6 @@
+/// <summary>
+/// Codeunit gimProdOrderManagement (ID 51006).
+/// </summary>
 codeunit 51006 gimProdOrderManagement
 {
     TableNo = "Production Order";
@@ -7,6 +10,11 @@ codeunit 51006 gimProdOrderManagement
 
     end;
 
+    /// <summary>
+    /// getAvailibityStatus.
+    /// </summary>
+    /// <param name="ProdOrder">record "Production Order".</param>
+    /// <returns>Return variable availState of type enum gimAvailibityStatus.</returns>
     procedure getAvailibityStatus(ProdOrder: record "Production Order") availState: enum gimAvailibityStatus
     var
         r: integer;
@@ -22,6 +30,10 @@ codeunit 51006 gimProdOrderManagement
         end;
     end;
 
+    /// <summary>
+    /// SetLightOnProdOrder.
+    /// </summary>
+    /// <param name="ProdOrder">VAR record "Production Order".</param>
     procedure SetLightOnProdOrder(var ProdOrder: record "Production Order")
     var
         inStr: Instream;
@@ -39,9 +51,9 @@ codeunit 51006 gimProdOrderManagement
                 gimLightManagement.getgreenLight(inStr);
 
         end;
-        CopyStream(outstr, instr);
-        ProdOrder."gimAvailability Indicator".CreateOutStream(outStr);
 
+        ProdOrder."gimAvailability Indicator".CreateOutStream(outStr);
+        CopyStream(outstr, instr);
 
     end;
 

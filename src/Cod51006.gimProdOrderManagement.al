@@ -18,16 +18,26 @@ codeunit 51006 gimProdOrderManagement
     procedure getAvailibityStatus(ProdOrder: record "Production Order") availState: enum gimAvailibityStatus
     var
         r: integer;
+        gimMaterialShortage: record gimMaterialShortage temporary;
+        gimMaterialShortageMgmt: Codeunit gimMaterialShortageMgmt;
     begin
-        r := random(3);
-        case r of
-            1:
-                availState := availstate::"Not Available";
-            2:
-                availState := availstate::"In Order";
-            3:
-                availState := availstate::"Available";
-        end;
+
+        gimMaterialShortageMgmt.getMaterialShortage(gimMaterialShortage, ProdOrder);
+
+        if gimmaterialShortage.count > 0 THEN
+            availstate := availstate::"Not Available"
+        else
+            availstate := availstate::Available;
+
+
+        // case r of
+        //     1:
+        //         availState := availstate::"Not Available";
+        //     2:
+        //         availState := availstate::"In Order";
+        //     3:
+        //         availState := availstate::"Available";
+        // end;
     end;
 
     /// <summary>
@@ -55,6 +65,9 @@ codeunit 51006 gimProdOrderManagement
 
     end;
 
+    /// <summary>
+    /// InitBitmaps.
+    /// </summary>
     procedure InitBitmaps()
     begin
         BitmapRed.get(0);

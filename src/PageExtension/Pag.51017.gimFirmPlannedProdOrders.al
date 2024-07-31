@@ -13,7 +13,28 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
 
             }
         }
+
     }
+
+    actions
+    {
+        addlast(processing)
+        {
+            action(getAvailStatus)
+
+            {
+                caption = 'Set Light';
+                ApplicationArea = all;
+                trigger OnAction()
+                begin
+                    gimProdOrderMgmt.SetLightOnProdOrder(rec);
+                    CurrPage.update(false);
+                end;
+
+            }
+        }
+    }
+
 
     trigger OnOpenPage()
     begin
@@ -22,13 +43,14 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
 
     trigger OnAfterGetRecord()
     begin
-        gimProdOrderMgmt.SetLightOnProdOrder(rec);
+        //gimProdOrderMgmt.SetLightOnProdOrder(rec);
 
     end;
 
 
     var
         gimProdOrderMgmt: codeunit gimProdOrderManagement;
+
 
 
 

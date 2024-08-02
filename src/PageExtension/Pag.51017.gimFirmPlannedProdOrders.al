@@ -43,7 +43,8 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
 
     trigger OnAfterGetRecord()
     begin
-        //gimProdOrderMgmt.SetLightOnProdOrder(rec);
+        gimProdOrderMgmt.SetLightOnProdOrder(rec);
+
 
     end;
 

@@ -16,10 +16,14 @@ codeunit 51007 gimMaterialShortageMgmt
     begin
         ProdOrder.setrange(Status, prodorder.status);
         ProdOrder.Setrange("No.", ProdOrder."No.");
+
         IF ProdOrder.FINDFIRST then
             repeat
                 ProdOrderline.setrange(Status, ProdOrder.Status);
                 ProdOrderLine.setrange("Prod. Order No.", ProdOrder."No.");
+                if ProdOrderline.findset() then
+                    IF ProdOrderline.COUNT > 1 then
+                        ProdOrderline.SETRANGE("Line No.", 20000, 1000000);
                 IF ProdOrderLine.findset() then
                     repeat
                         ProdOrderComp.setrange(Status, ProdOrder.status);
@@ -31,6 +35,7 @@ codeunit 51007 gimMaterialShortageMgmt
                             until ProdOrderComp.next = 0;
                     until ProdOrderLine.next = 0;
             until ProdOrder.Next() = 0;
+
         gimMaterialShortage.SETFILTER(ProdOrderDueDate, ProdOrder.getfilter("Date Filter"));
         gimMaterialShortage.SETFILTER(CompItemRemQtyBase, '>0');
     end;

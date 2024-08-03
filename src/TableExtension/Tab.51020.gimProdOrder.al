@@ -18,11 +18,19 @@ tableextension 51020 gimProdOrder extends "Production Order"
         {
             caption = 'Availibility Status';
             DataClassification = SystemMetadata;
+            editable = false;
         }
         field(50003; gimOrderNo; code[30])
         {
             caption = 'Order No.';
             DataClassification = SystemMetadata;
+            editable = false;
+        }
+        field(50004; gimProductionLine; text[80])
+        {
+            caption = 'Production Line';
+            DataClassification = SystemMetadata;
+            editable = false;
         }
     }
 

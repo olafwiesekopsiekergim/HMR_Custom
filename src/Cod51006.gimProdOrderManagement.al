@@ -59,8 +59,9 @@ codeunit 51006 gimProdOrderManagement
                 ProdOrder."gimAvailability Indicator" := BitmapOrange.bitmap;
             availState::Available:
                 ProdOrder."gimAvailability Indicator" := BitmapGreen.bitmap;
-
         end;
+
+        prodorder."gimAvailability Status" := availstate;
 
 
     end;
@@ -78,17 +79,7 @@ codeunit 51006 gimProdOrderManagement
         BitmapGreen.CalcFields(Bitmap);
     end;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="reservEntry"></param>
-    Procedure getReservEntry(reservEntry: Record "Reservation Entry")
-    var
 
-    begin
-
-
-    end;
 
     var
         BitmapRed: record gimBitmap;

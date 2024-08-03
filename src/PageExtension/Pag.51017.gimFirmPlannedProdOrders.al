@@ -2,7 +2,7 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
 {
     layout
     {
-        addfirst(Control1)
+        addafter("No.")
         {
             field("gimAvailability Indicator"; Rec."gimAvailability Indicator")
             {
@@ -12,7 +12,13 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
 
 
             }
+            field(gimOrderNo; Rec.gimOrderNo)
+            {
+                applicationArea = all;
+                Caption = 'Order No.';
+            }
         }
+
 
     }
 

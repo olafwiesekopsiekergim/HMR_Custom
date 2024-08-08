@@ -8,6 +8,7 @@ codeunit 51008 gimHMREvents
     local procedure OnAfterCreateProdOrderFromSalesLine(var ProdOrder: Record "Production Order"; var SalesLine: Record "Sales Line")
     begin
         ProdOrder.gimOrderNo := Salesline."Document No.";
+        ProdOrder.Modify();
 
     end;
 

@@ -45,8 +45,10 @@ codeunit 51008 gimHMREvents
             ProdOrderRoutingLine.Setrange("Prod. Order No.", ProductionOrder."No.");
             ProdOrderRoutingLine.Setrange(gimIsLine, true);
             IF ProdOrderRoutingLine.findFirst() Then
-                If Workcenter.get(ProdOrderRoutingLine."Work Center No.") then
+                If Workcenter.get(ProdOrderRoutingLine."Work Center No.") then BEGIN
                     ProductionOrder.gimProductionLine := workcenter.name;
+                    ProductionOrder.MODIFY;
+                END;
 
         end;
     end;

@@ -6,8 +6,22 @@ codeunit 51008 gimHMREvents
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Prod. Order from Sale", 'OnAfterCreateProdOrderFromSalesLine', '', false, false)]
 
     local procedure OnAfterCreateProdOrderFromSalesLine(var ProdOrder: Record "Production Order"; var SalesLine: Record "Sales Line")
+    var
+        ProdOrderRoutingLine: record "Prod. Order Routing Line";
+        WorkCenter: record "Work Center";
     begin
+        //OrderNo
         ProdOrder.gimOrderNo := Salesline."Document No.";
+
+        //ProductionLine
+        ProdOrderRoutingline.Setrange(Status, ProdOrder.Status);
+        ProdOrderRoutingLine.Setrange("Prod. Order No.", ProdOrder."No.");
+        ProdOrderRoutingLine.Setrange(gimIsLine, true);
+        IF ProdOrderRoutingLine.findFirst() Then
+            If Workcenter.get(ProdOrderRoutingLine."Work Center No.") then
+                ProdOrder.gimProductionLine := workcenter.name;
+
+
 
 
     end;

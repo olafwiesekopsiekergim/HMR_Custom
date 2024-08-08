@@ -17,6 +17,11 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
                 applicationArea = all;
                 Caption = 'Order No.';
             }
+            field(gimProductionLine; rec.gimProductionLine)
+            {
+                applicationArea = all;
+                Caption = 'Production Line';
+            }
         }
 
 

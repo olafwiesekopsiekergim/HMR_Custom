@@ -3,12 +3,12 @@
 /// </summary>
 codeunit 51008 gimHMREvents
 {
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Prod. Order from Sale", 'OnAfterCreateProdOrder', '', false, false)]
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Prod. Order from Sale", 'OnAfterCreateProdOrderFromSalesLine', '', false, false)]
 
     local procedure OnAfterCreateProdOrderFromSalesLine(var ProdOrder: Record "Production Order"; var SalesLine: Record "Sales Line")
     begin
         ProdOrder.gimOrderNo := Salesline."Document No.";
-        ProdOrder.Modify();
+
 
     end;
 
@@ -17,6 +17,19 @@ codeunit 51008 gimHMREvents
     local procedure OnAfterWorkCenterTransferFields(var ProdOrderRoutingLine: Record "Prod. Order Routing Line"; WorkCenter: Record "Work Center")
     begin
         ProdOrderRoutingLine.Validate(gimIsLine, WorkCenter.gimisLine);
+    end;
+
+    [EventSubscriber(ObjectType::table, database::"Prod. Order Routing Line", 'OnAfterCopyFromRoutingLine', '', false, false)]
+
+    local procedure OnAfterCopyFromRoutingLine(var ProdOrderRoutingLine: Record "Prod. Order Routing Line"; RoutingLine: Record "Routing Line")
+    var
+        workcenter: Record "Work Center";
+    begin
+        if ProdOrderRoutingline.Type = ProdOrderRoutingLine.type::"Machine Center" then
+            if Workcenter.get(ProdOrderRoutingLine."Work Center No.") then
+                ProdOrderRoutingLine.Validate(gimIsLine, WorkCenter.gimisLine);
+
+
     end;
 
     [EventSubscriber(ObjectType::Report, report::"Refresh Production Order", 'OnAfterRefreshProdOrder', '', false, false)]

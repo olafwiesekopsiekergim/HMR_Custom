@@ -13,16 +13,25 @@ codeunit 51008 gimHMREvents
         //OrderNo
         ProdOrder.gimOrderNo := Salesline."Document No.";
 
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Prod. Order from Sale", 'OnAfterCreateProdOrder', '', false, false)]
+
+    local procedure OnAfterCreateProdOrder(var ProdOrder: Record "Production Order"; var SalesLine: Record "Sales Line")
+    var
+        ProdOrderRoutingLine: record "Prod. Order Routing Line";
+        WorkCenter: record "Work Center";
+    begin
+
         //ProductionLine
         ProdOrderRoutingline.Setrange(Status, ProdOrder.Status);
         ProdOrderRoutingLine.Setrange("Prod. Order No.", ProdOrder."No.");
         ProdOrderRoutingLine.Setrange(gimIsLine, true);
         IF ProdOrderRoutingLine.findFirst() Then
-            If Workcenter.get(ProdOrderRoutingLine."Work Center No.") then
+            If Workcenter.get(ProdOrderRoutingLine."Work Center No.") then BEGIN
                 ProdOrder.gimProductionLine := workcenter.name;
-
-
-
+                ProdOrder.MODIFY;
+            END;
 
     end;
 

@@ -28,7 +28,7 @@ codeunit 51008 gimHMREvents
         if ProdOrderRoutingline.Type = ProdOrderRoutingLine.type::"Work Center" then
             if Workcenter.get(ProdOrderRoutingLine."Work Center No.") then BEGIN
                 ProdOrderRoutingLine.Validate(gimIsLine, WorkCenter.gimisLine);
-                ProdOrderRoutingLine.modify;
+                // ProdOrderRoutingLine.modify;
             End;
 
     end;

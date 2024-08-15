@@ -75,4 +75,13 @@ codeunit 51008 gimHMREvents
 
         end;
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Prod. Order Status Management", 'OnAfterChangeStatusOnProdOrder', '', false, false)]
+
+    local procedure OnAfterChangeStatusOnProdOrder(var ProdOrder: Record "Production Order"; var ToProdOrder: Record "Production Order"; NewStatus: Enum "Production Order Status"; NewPostingDate: Date; NewUpdateUnitCost: Boolean; var SuppressCommit: Boolean)
+    begin
+        ToProdOrder.gimOrderNo := ProdOrder.gimOrderNo;
+        ToProdOrder.gimProductionLine := ProdOrder.gimProductionLine;
+        ToProdOrder."gimAvailability Status" := ProdOrder."gimAvailability Status";
+    end;
 }

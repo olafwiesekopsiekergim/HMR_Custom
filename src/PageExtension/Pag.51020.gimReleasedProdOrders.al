@@ -1,4 +1,7 @@
-pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
+/// <summary>
+/// PageExtension gimReleasedProdOrders (ID 51020) extends Record Released Production Orders.
+/// </summary>
+pageextension 51020 gimReleasedProdOrders extends "Released Production Orders"
 {
     layout
     {
@@ -24,8 +27,8 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
             }
         }
 
-
     }
+
 
     actions
     {
@@ -63,8 +66,4 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
 
     var
         gimProdOrderMgmt: codeunit gimProdOrderManagement;
-
-
-
-
 }

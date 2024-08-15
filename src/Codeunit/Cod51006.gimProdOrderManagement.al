@@ -80,6 +80,26 @@ codeunit 51006 gimProdOrderManagement
     end;
 
 
+    /// <summary>
+    /// RefreshAvailabilityStatusOnProdOrders.
+    /// </summary>
+    /// <param name="ProdOrder">VAR record "Production Order".</param> 
+    procedure RefreshAvailabilityStatusOnProdOrders(var ProdOrder: record "Production Order")
+    var
+        gimLightManagement: Codeunit gimLightManagement;
+    begin
+        IF ProdOrder.Findset() then
+            repeat
+                initbitmaps;
+                SetLightOnProdOrder(ProdOrder);
+                ProdOrder.MODIFY;
+            until ProdOrder.next = 0;
+
+
+
+    end;
+
+
 
     var
         BitmapRed: record gimBitmap;

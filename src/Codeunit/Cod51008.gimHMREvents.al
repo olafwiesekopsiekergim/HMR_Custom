@@ -3,6 +3,26 @@
 /// </summary>
 codeunit 51008 gimHMREvents
 {
+
+    /// <summary>
+    /// RefreshWorkLine.
+    /// </summary>
+    /// <param name="ProductionOrder">VAR Record "Production Order".</param>
+    procedure RefreshWorkLine(var ProductionOrder: Record "Production Order")
+    var
+        ProdOrderRoutingLine: record "Prod. Order Routing Line";
+        WorkCenter: record "Work Center";
+    begin
+        ProdOrderRoutingline.Setrange(Status, ProductionOrder.Status);
+        ProdOrderRoutingLine.Setrange("Prod. Order No.", ProductionOrder."No.");
+        ProdOrderRoutingLine.Setrange(gimIsLine, true);
+        IF ProdOrderRoutingLine.findFirst() Then
+            If Workcenter.get(ProdOrderRoutingLine."Work Center No.") then BEGIN
+                ProductionOrder.gimProductionLine := workcenter.name;
+                ProductionOrder.MODIFY;
+            END;
+    end;
+
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Prod. Order from Sale", 'OnAfterCreateProdOrderFromSalesLine', '', false, false)]
 
     local procedure OnAfterCreateProdOrderFromSalesLine(var ProdOrder: Record "Production Order"; var SalesLine: Record "Sales Line")
@@ -59,22 +79,15 @@ codeunit 51008 gimHMREvents
     [EventSubscriber(ObjectType::Report, report::"Refresh Production Order", 'OnAfterRefreshProdOrder', '', false, false)]
 
     local procedure OnAfterRefreshProdOrder(var ProductionOrder: Record "Production Order"; ErrorOccured: Boolean)
-    var
-        ProdOrderRoutingLine: record "Prod. Order Routing Line";
-        WorkCenter: record "Work Center";
     begin
         if Not ErrorOccured then begin
-            ProdOrderRoutingline.Setrange(Status, ProductionOrder.Status);
-            ProdOrderRoutingLine.Setrange("Prod. Order No.", ProductionOrder."No.");
-            ProdOrderRoutingLine.Setrange(gimIsLine, true);
-            IF ProdOrderRoutingLine.findFirst() Then
-                If Workcenter.get(ProdOrderRoutingLine."Work Center No.") then BEGIN
-                    ProductionOrder.gimProductionLine := workcenter.name;
-                    ProductionOrder.MODIFY;
-                END;
+            RefreshWorkLine(ProductionOrder);
 
         end;
     end;
+
+
+
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Prod. Order Status Management", 'OnAfterChangeStatusOnProdOrder', '', false, false)]
 

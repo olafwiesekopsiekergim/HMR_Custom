@@ -47,6 +47,22 @@ pageextension 51020 gimReleasedProdOrders extends "Released Production Orders"
                 end;
 
             }
+
+            action(refreshWorkLine)
+            {
+                caption = 'Refresh Working Line';
+                ApplicationArea = all;
+                trigger OnAction()
+                var
+                    gimHMREvents: codeunit gimHMREvents;
+                begin
+                    if rec.findset then
+                        repeat
+                            gimHMREvents.RefreshWorkLine(rec);
+                        until rec.next = 0;
+                    CurrPage.update(false);
+                end;
+            }
         }
     }
 

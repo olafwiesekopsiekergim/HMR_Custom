@@ -16,7 +16,8 @@
             "enableSqlInformationDebugger": true,
             "tenant": "default",
             "usePublicURLFromServer": false,
-            "port": 7149
+            "port": 7149,
+            "schemaUpdateMode": "ForceSync"
         },
         {
             "name": "HMR Test",
@@ -33,7 +34,9 @@
             "enableSqlInformationDebugger": true,
             "tenant": "default",
             "usePublicURLFromServer": false,
-            "port": 7249
+            "port": 7249,
+            "schemaUpdateMode": "ForceSync"
+
         }
     ]
 }

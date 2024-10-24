@@ -8,7 +8,10 @@ tableextension 51012 gimProdOrderRoutingLine extends "Prod. Order Routing Line"
         field(51005; gimIsLine; Boolean)
         {
             Caption = 'gimIsLine';
-            DataClassification = SystemMetadata;
+            FieldClass = flowfield;
+            CalcFormula = lookup("work center".gimIsLine WHERE("No." = field("No.")));
+            Editable = false;
+
         }
     }
 }

@@ -59,7 +59,7 @@ codeunit 51008 gimHMREvents
 
     local procedure OnAfterWorkCenterTransferFields(var ProdOrderRoutingLine: Record "Prod. Order Routing Line"; WorkCenter: Record "Work Center")
     begin
-        ProdOrderRoutingLine.Validate(gimIsLine, WorkCenter.gimisLine);
+        //ProdOrderRoutingLine.Validate(gimIsLine, WorkCenter.gimisLine);
     end;
 
     [EventSubscriber(ObjectType::table, database::"Prod. Order Routing Line", 'OnAfterCopyFromRoutingLine', '', false, false)]
@@ -70,7 +70,7 @@ codeunit 51008 gimHMREvents
     begin
         if ProdOrderRoutingline.Type = ProdOrderRoutingLine.type::"Work Center" then
             if Workcenter.get(ProdOrderRoutingLine."Work Center No.") then BEGIN
-                ProdOrderRoutingLine.Validate(gimIsLine, WorkCenter.gimisLine);
+                //ProdOrderRoutingLine.Validate(gimIsLine, WorkCenter.gimisLine);
                 // ProdOrderRoutingLine.modify;
             End;
 

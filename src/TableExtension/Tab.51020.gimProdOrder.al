@@ -32,6 +32,30 @@ tableextension 51020 gimProdOrder extends "Production Order"
             DataClassification = SystemMetadata;
             editable = false;
         }
+
+        field(50010; gimQuantityFromPOL; decimal)
+        {
+            caption = 'Qty of POL';
+            editable = false;
+            fieldclass = FlowField;
+            CalcFormula = lookup("Prod. Order Line".Quantity WHERE(Status = Field(status), "Prod. Order No." = field("No.")));
+        }
+        field(50011; gimFinishedQuantityFromPOL; decimal)
+        {
+            caption = 'Finished Qty of POL';
+            editable = false;
+            fieldclass = FlowField;
+            CalcFormula = lookup("Prod. Order Line"."Finished Quantity" WHERE(Status = Field(status), "Prod. Order No." = field("No.")));
+        }
+
+        field(50012; gimRemainingQuantityFromPOL; decimal)
+        {
+            caption = 'Remaining Qty of POL';
+            editable = false;
+            fieldclass = FlowField;
+            CalcFormula = lookup("Prod. Order Line"."Remaining Quantity" WHERE(Status = Field(status), "Prod. Order No." = field("No.")));
+        }
+
     }
 
 

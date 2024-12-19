@@ -26,6 +26,24 @@ pageextension 51020 gimReleasedProdOrders extends "Released Production Orders"
                 Caption = 'Production Line';
             }
         }
+        addafter(Quantity)
+        {
+            field(gimQuantityFromPOL; Rec.gimQuantityFromPOL)
+            {
+                applicationArea = all;
+
+            }
+            field(gimFinishedQuantityFromPOL; Rec.gimFinishedQuantityFromPOL)
+            {
+                applicationArea = all;
+
+            }
+            field(gimRemainingQuantityFromPOL; Rec.gimRemainingQuantityFromPOL)
+            {
+                applicationArea = all;
+
+            }
+        }
 
     }
 
@@ -74,7 +92,7 @@ pageextension 51020 gimReleasedProdOrders extends "Released Production Orders"
 
     trigger OnAfterGetRecord()
     begin
-        gimProdOrderMgmt.SetLightOnProdOrder(rec);
+        //gimProdOrderMgmt.SetLightOnProdOrder(rec);
 
 
     end;

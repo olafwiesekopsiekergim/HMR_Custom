@@ -43,6 +43,15 @@ pageextension 51020 gimReleasedProdOrders extends "Released Production Orders"
                 applicationArea = all;
 
             }
+            field(gimItemDescription2; Rec.gimItemDescription2)
+            {
+                applicationArea = all;
+            }
+            field(gimItemBomNo; Rec.gimItemBomNo)
+            {
+                applicationArea = all;
+            }
+
         }
 
     }

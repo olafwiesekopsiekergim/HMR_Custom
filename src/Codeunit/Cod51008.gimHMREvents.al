@@ -12,15 +12,24 @@ codeunit 51008 gimHMREvents
     var
         ProdOrderRoutingLine: record "Prod. Order Routing Line";
         WorkCenter: record "Work Center";
+        item: record Item;
     begin
         ProdOrderRoutingline.Setrange(Status, ProductionOrder.Status);
         ProdOrderRoutingLine.Setrange("Prod. Order No.", ProductionOrder."No.");
-        ProdOrderRoutingLine.Setrange(gimIsLine, true);
+        //ProdOrderRoutingLine.Setrange(gimIsLine, true);
         IF ProdOrderRoutingLine.findFirst() Then
             If Workcenter.get(ProdOrderRoutingLine."Work Center No.") then BEGIN
                 ProductionOrder.gimProductionLine := workcenter.name;
                 ProductionOrder.MODIFY;
             END;
+        if ProductionOrder."Source Type" = productionorder."Source Type"::Item then
+            if Item.get(ProductionOrder."Source No.") then begin
+                ProductionOrder.gimItemDescription2 := Item."Description 2";
+                ProductionOrder.gimItemBomNo := Item."Production BOM No.";
+                ProductionOrder.modify;
+
+            end;
+
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Prod. Order from Sale", 'OnAfterCreateProdOrderFromSalesLine', '', false, false)]
@@ -43,15 +52,7 @@ codeunit 51008 gimHMREvents
         WorkCenter: record "Work Center";
     begin
 
-        //ProductionLine
-        ProdOrderRoutingline.Setrange(Status, ProdOrder.Status);
-        ProdOrderRoutingLine.Setrange("Prod. Order No.", ProdOrder."No.");
-        ProdOrderRoutingLine.Setrange(gimIsLine, true);
-        IF ProdOrderRoutingLine.findFirst() Then
-            If Workcenter.get(ProdOrderRoutingLine."Work Center No.") then BEGIN
-                ProdOrder.gimProductionLine := workcenter.name;
-                ProdOrder.MODIFY;
-            END;
+        RefreshWorkLine(ProdOrder);
 
     end;
 

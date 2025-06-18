@@ -44,6 +44,15 @@ pageextension 51022 gimProductionOrderList extends "Production Order List"
                 applicationArea = all;
 
             }
+            field(gimItemDescription2; Rec.gimItemDescription2)
+            {
+                applicationArea = all;
+            }
+            field(gimItemBomNo; Rec.gimItemBomNo)
+            {
+                applicationArea = all;
+            }
+
 
         }
     }

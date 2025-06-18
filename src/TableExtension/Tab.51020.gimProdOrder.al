@@ -55,6 +55,20 @@ tableextension 51020 gimProdOrder extends "Production Order"
             fieldclass = FlowField;
             CalcFormula = lookup("Prod. Order Line"."Remaining Quantity" WHERE(Status = Field(status), "Prod. Order No." = field("No.")));
         }
+        field(50020; gimItemDescription2; text[200])
+        {
+            caption = 'Item Desc. 2';
+            DataClassification = SystemMetadata;
+            editable = false;
+
+        }
+        field(50021; gimItemBomNo; code[50])
+        {
+            caption = 'Item BOM No.';
+            DataClassification = SystemMetadata;
+            editable = false;
+
+        }
 
     }
 

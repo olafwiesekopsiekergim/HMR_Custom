@@ -1,4 +1,4 @@
-pageextension 51025 gimFPProdOrderCard extends "Firm Planned Prod. Order"
+pageextension 51028 gimFPProdOrderCard extends "Firm Planned Prod. Order"
 {
     layout
     {

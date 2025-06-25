@@ -69,6 +69,20 @@ tableextension 51020 gimProdOrder extends "Production Order"
             editable = false;
 
         }
+        field(50022; gimOpenQualityIssues; Boolean)
+        {
+            caption = 'Open Quality Issues';
+            DataClassification = SystemMetadata;
+
+
+        }
+        field(50023; gimQualityIssuesComment; text[250])
+        {
+            caption = 'Quality Issues Comment';
+            DataClassification = SystemMetadata;
+
+
+        }
 
     }
 

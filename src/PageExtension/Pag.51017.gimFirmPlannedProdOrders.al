@@ -30,6 +30,14 @@ pageextension 51017 gimFirmPlannedProdOrders extends "Firm Planned Prod. Orders"
             {
                 applicationArea = all;
             }
+            field(gimOpenQualityIssues; Rec.gimOpenQualityIssues)
+            {
+                applicationArea = all;
+            }
+            field(gimQualityIssuesComment; Rec.gimQualityIssuesComment)
+            {
+                applicationArea = all;
+            }
 
         }
 

@@ -1,4 +1,4 @@
-pageextension 51024 gmRelProdOrderCard extends "Released Production Order"
+pageextension 51027 gmRelProdOrderCard extends "Released Production Order"
 {
     layout
     {

@@ -2,7 +2,7 @@
   "id": "2559b1d3-6d73-41e7-9ef0-0d5b060099e4",
   "name": "HMR_GIM_Custom",
   "publisher": "GIM",
-  "version": "1.0.0.0",
+  "version": "26.0.0.0",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -20,7 +20,7 @@
   ],
   "screenshots": [],
   "platform": "22.0.0.0",
-  "application": "22.0.0.0",
+  "application": "26.0.0.0",
   "idRanges": [
     {
       "from": 51005,
@@ -32,7 +32,7 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "11.0",
+  "runtime": "15.0",
   "features": [
     "NoImplicitWith"
   ]
